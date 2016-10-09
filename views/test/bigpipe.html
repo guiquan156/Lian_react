@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<meta char-set="utf-8">
+		<title>bigPipe test</title>
+		<style>
+			.wrap {
+				width: 1040px;
+				margin: 0 auto;
+				overflow: hidden;
+				height: 400px;
+			}
+			.left_nav {
+				float: left;
+				width: 20%;
+				background: lightgreen;
+				height: 400px;
+			}
+			.content {
+				float: left;
+				background: pink;
+				width: 60%;
+				height: 400px;
+			}
+			.right_nav {
+				float: left;
+				width: 20%;
+				background: lightblue;
+				height: 400px;
+			}
+
+		</style>
+		<script src="//cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+		<script>
+
+		var bigPipe = {
+			onPageletArrive: function (options) {
+				$('#' + options.id).append(options.content);
+			}
+		};
+
+
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="left_nav" id="J_left_nav"></div>
+			<div class="content" id="J_content"></div>
+			<div class="right_nav" id="J_right_nav"></div>
+		</div>
