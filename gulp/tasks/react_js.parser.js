@@ -4,17 +4,11 @@ var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
 var webpack = require('webpack');
 var uglify = require('gulp-uglify');
+var path = require('path');
 
 var config = require('../config.js');
-var webpackConf = require('../webpack.config.js');
+var webpackConf = require('../../webpack.config.js');
 var prettifyLog = require('../lib/prettify_log.js');
-// var webpackConfWatch = (function(){
-// 	// var o = Object.create(webpackConf);
-// 	// o.watch = true;
-// 	// return o;
-// 	webpackConf.watch = true;
-// 	return webpackConf;
-// })();
 
 function showExceptions(errors) {
 	errors.forEach(function(error){
@@ -36,9 +30,25 @@ gulp.task('parseReactJs', function(callback){
 // 	});
 // });
 
-// 能watch 不提示错误信息
+//用webpack的watch参数监听
+// gulp.task('parseReactJs:watch', function(callback){
+// 	webpack(webpackConf).run(function(err, stats){
+// 		prettifyLog(err, stats);
+// 		//阻塞掉，监听
+// 	});
+// })
+
+// 用gulp.watch实现曾量监听 感觉效率不如webpack watch
 gulp.task('parseReactJs:watch', function(){
-	gulp.watch(config.src + '/**/*.js', ['parseReactJs']);
+	gulp.watch(config.src + '/**/*.js', function(files){
+		var filename = path.dirname(files.path).split(path.sep).pop() + path.sep + path.basename(files.path, '.js')
+		webpackConf.entry = {};//清空
+		webpackConf.entry[filename] = files.path;
+		//跑起来
+		webpack(webpackConf).run(function(err, stats){
+			prettifyLog(err, stats);
+		});
+	});
 });
 
 

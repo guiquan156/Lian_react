@@ -10,14 +10,12 @@ var fs = require('fs');
 
 var app = express();
 
-
 //set express template
 app.set('views', [BUILD_PATH, VIEWS_PATH]);
 app.set('view engine', 'html');
 app.engine('.html', template.__express);
 
-
-app.use(express.static(PUBLIC_PATH));//statuc files
+app.use(express.static(BUILD_PATH));//statuc files
 app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-form-urlencoded
 app.use(bodyParser.json());// parse application/json
 app.use(cookieParser());

@@ -1,6 +1,6 @@
-// var webpack = require('webpack');
+var webpack = require('webpack');
 var glob = require('glob');
-var config = require('./gulp/config.js');
+var config = require('./config');
 
 //动态生成entry
 var entry = (function(){

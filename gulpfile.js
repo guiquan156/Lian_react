@@ -5,12 +5,9 @@ require('./gulp/tasks/less.parser.js');
 require('./gulp/tasks/react_js.parser.js');
 require('./gulp/tasks/view.parser.js');
 
-gulp.task('default', ['parseLess:watch', 'parseReactJs:watch', 'view:watch']);
+//解析js版本
+gulp.task('parseAll', ['parseLess:watch', 'view:watch', 'parseReactJs:watch']);
 
-// gulp.task('test', ['parseReactJs:watch']);
-
-
-
-
-
+//不解析js
+gulp.task('default', ['parseLess:watch', 'view:watch']);
 
