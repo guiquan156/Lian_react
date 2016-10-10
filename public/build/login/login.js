@@ -69,6 +69,7 @@
 			var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
 
 			_this.loginHandler = _this.loginHandler.bind(_this);
+			_this.resetHandler = _this.resetHandler.bind(_this);
 			return _this;
 		}
 
@@ -91,6 +92,12 @@
 						alert('网络出现异常，请刷新再试！');
 					}
 				});
+			}
+		}, {
+			key: 'resetHandler',
+			value: function resetHandler() {
+				this.refs.userId.value = '';
+				this.refs.pwd.value = '';
 			}
 		}, {
 			key: 'render',
@@ -120,7 +127,7 @@
 						),
 						React.createElement(
 							'button',
-							{ className: 'btn btn-danger' },
+							{ className: 'btn btn-danger', onClick: this.resetHandler },
 							'reset'
 						)
 					)
@@ -133,6 +140,8 @@
 
 	ReactDOM.render(React.createElement(Login, null), document.getElementById('login') //todo
 	);
+
+	'abc';
 
 /***/ },
 /* 1 */

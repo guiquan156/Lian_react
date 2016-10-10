@@ -9,6 +9,7 @@ class Login extends React.Component {
 	constructor(){
 		super();
 		this.loginHandler = this.loginHandler.bind(this);
+		this.resetHandler = this.resetHandler.bind(this);
 	}
 
 	loginHandler(){
@@ -38,20 +39,27 @@ class Login extends React.Component {
 			});
 	}
 
+
+	resetHandler(){
+		this.refs.userId.value = '';
+		this.refs.pwd.value = '';
+	}
+
 	render(){
 		return  (
 			<div className="login_wrap">
 				<h4>user id:</h4><input type="text" className="form-control user-id" ref="userId" />
 				<h4>password: </h4><input type="password" className="form-control" ref="pwd"/>
-				<div className="text-center button_row"><button className="btn btn-success" onClick={this.loginHandler}>login</button><button className="btn btn-danger">reset</button></div>
+				<div className="text-center button_row"><button className="btn btn-success" onClick={this.loginHandler}>login</button><button className="btn btn-danger" onClick={this.resetHandler}>reset</button></div>
 			</div>
 		);
 	}
-	
 }
 
 ReactDOM.render(
 	<Login />,
 	document.getElementById('login')//todo
 );
+
+'abc';
 

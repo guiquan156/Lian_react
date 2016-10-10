@@ -10,6 +10,7 @@ var entry = (function(){
 		var pathArr = value.split('/')
 		  , fileName = pathArr.pop().match(/(.*)(\.js)$/)[1]
 		  , pathName = pathArr.pop();
+		if(pathName == 'comm') return;
 		a[pathName + '/' + fileName] = value;
 	});
 	return a;

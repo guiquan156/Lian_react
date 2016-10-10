@@ -41,7 +41,11 @@ gulp.task('parseReactJs', function(callback){
 // 用gulp.watch实现曾量监听 感觉效率不如webpack watch
 gulp.task('parseReactJs:watch', function(){
 	gulp.watch(config.src + '/**/*.js', function(files){
-		var filename = path.dirname(files.path).split(path.sep).pop() + path.sep + path.basename(files.path, '.js')
+		var supDir = path.dirname(files.path).split(path.sep).pop();
+		var filename = supDir + path.sep + path.basename(files.path, '.js')
+
+		if(supDir == 'comm') return;
+
 		webpackConf.entry = {};//清空
 		webpackConf.entry[filename] = files.path;
 		//跑起来

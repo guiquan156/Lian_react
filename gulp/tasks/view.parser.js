@@ -29,7 +29,7 @@ gulp.task('viewAll', function(){
 });
 
 gulp.task('view:watch', function(){
-	gulp.watch(config.src + '/**/*.html', ['view']);
+	gulp.watch(config.src + '/*/*.html', ['view']);
 });
 
 //直接调用 没有返回值
