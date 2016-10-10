@@ -1,7 +1,4 @@
 //the easy component of login used react!!
-
-const React = require('react');
-const ReactDOM = require('react-dom');
 require('./login.less')
 
 class Login extends React.Component {
@@ -54,12 +51,10 @@ class Login extends React.Component {
 			</div>
 		);
 	}
+
 }
 
 ReactDOM.render(
 	<Login />,
 	document.getElementById('login')//todo
 );
-
-'abc';
-
