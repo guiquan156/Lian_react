@@ -40,15 +40,16 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(1);
+	__webpack_require__(76);
 
 	var _navComponent = __webpack_require__(5);
 
@@ -60,126 +61,120 @@
 
 	//nav 组件
 
-	var ContentWrap = function (_React$Component) {
-		_inherits(ContentWrap, _React$Component);
 
-		function ContentWrap() {
-			_classCallCheck(this, ContentWrap);
+	var ArticleList = function (_React$Component) {
+		_inherits(ArticleList, _React$Component);
 
-			return _possibleConstructorReturn(this, (ContentWrap.__proto__ || Object.getPrototypeOf(ContentWrap)).apply(this, arguments));
+		function ArticleList() {
+			_classCallCheck(this, ArticleList);
+
+			return _possibleConstructorReturn(this, (ArticleList.__proto__ || Object.getPrototypeOf(ArticleList)).apply(this, arguments));
 		}
 
-		_createClass(ContentWrap, [{
+		_createClass(ArticleList, [{
 			key: 'render',
 			value: function render() {
+				//todo 改成读数据操作
+				var data = [{
+					title: 'A Javauildices | React',
+					date: '2016-9-9'
+				}, {
+					title: 'A Javauilding user inte',
+					date: '2016-9-9'
+				}, {
+					title: 'A Javauilding user interfeact',
+					date: '2016-9-9'
+				}, {
+					title: 'Ading user interfaces | React',
+					date: '2016-9-9'
+				}, {
+					title: 'A Javauilding userct',
+					date: '2016-9-9'
+				}, {
+					title: 'A Javauilding user interfaces | React user interfaces | Re user interfaces | Re',
+					date: '2016-9-9'
+				}, {
+					title: 'A Javauilding user interfReact',
+					date: '2016-9-9'
+				}];
+
+				var tmpl = data.map(function (item) {
+					return React.createElement(
+						'p',
+						null,
+						React.createElement(
+							'a',
+							{ href: '#' },
+							item.title
+						),
+						React.createElement(
+							'span',
+							null,
+							item.date
+						)
+					);
+				});
+
 				return React.createElement(
 					'div',
-					{ className: 'content_wrap' },
-					React.createElement(
-						'a',
-						{ href: '#' },
-						React.createElement('img', { src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1637785195,4139586512&fm=111&gp=0.jpg', className: 'photo' })
-					),
+					{ className: 'article_list_wrap' },
 					React.createElement(
 						'p',
 						null,
-						'guiquan156'
+						'\u5217\u8868'
 					),
-					React.createElement(
-						'div',
-						{ className: 'main_entry' },
-						React.createElement(
-							'a',
-							{ href: 'http://localhost:3333/list' },
-							'\u5168\u90E8'
-						),
-						React.createElement(
-							'a',
-							{ href: 'http://localhost:3333/list' },
-							'\u5206\u7C7B'
-						),
-						React.createElement(
-							'a',
-							{ href: 'http://localhost:3333/list' },
-							'\u8BA8\u8BBA'
-						)
-					)
+					data.map(function (item) {
+						return React.createElement(
+							'p',
+							null,
+							React.createElement(
+								'a',
+								{ href: '#' },
+								item.title
+							),
+							React.createElement(
+								'span',
+								null,
+								item.date
+							)
+						);
+					})
 				);
 			}
 		}]);
 
-		return ContentWrap;
+		return ArticleList;
 	}(React.Component);
 
-	var HomeWrap = function (_React$Component2) {
-		_inherits(HomeWrap, _React$Component2);
+	var ListWrap = function (_React$Component2) {
+		_inherits(ListWrap, _React$Component2);
 
-		function HomeWrap() {
-			_classCallCheck(this, HomeWrap);
+		function ListWrap() {
+			_classCallCheck(this, ListWrap);
 
-			return _possibleConstructorReturn(this, (HomeWrap.__proto__ || Object.getPrototypeOf(HomeWrap)).apply(this, arguments));
+			return _possibleConstructorReturn(this, (ListWrap.__proto__ || Object.getPrototypeOf(ListWrap)).apply(this, arguments));
 		}
 
-		_createClass(HomeWrap, [{
+		_createClass(ListWrap, [{
 			key: 'render',
 			value: function render() {
 				return React.createElement(
 					'div',
 					null,
 					React.createElement(_navComponent.TopNav, null),
-					React.createElement(ContentWrap, null)
+					React.createElement(ArticleList, null)
 				);
 			}
 		}]);
 
-		return HomeWrap;
+		return ListWrap;
 	}(React.Component);
 
-	ReactDOM.render(React.createElement(HomeWrap, null), document.getElementById('app') //todo
-	);
+	ReactDOM.render(React.createElement(ListWrap, null), document.getElementById('app'));
 
 /***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(2);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/postcss-loader/index.js!./../../../node_modules/less-loader/index.js!./index.less", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/postcss-loader/index.js!./../../../node_modules/less-loader/index.js!./index.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "body,dl,html,li,ol,ul{padding:0;margin:0;border:0}dl,li,ol,ul{list-style:none}a,dl,h1,h2,h3,h4,h5,h6,li,ol,p,ul{font-family:Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,WenQuanYi Micro Hei,Microsoft Yahei,sans-serif}a{text-decoration:none}.content_wrap{position:absolute;left:50%;top:50%;margin:-80px -150px;width:300px}.content_wrap p{text-align:center;font-size:16px;color:#444;margin:20px 0}.photo{display:block;width:120px;height:120px;border-radius:50%;margin:0 auto}.main_entry{text-align:center}.main_entry a{color:#44a340;font-size:14px;margin:0 8px}.main_entry a:hover{color:#fff;background-color:#44a340}", ""]);
-
-	// exports
-
-
-/***/ },
-/* 3 */
+/***/ 3:
 /***/ function(module, exports) {
 
 	/*
@@ -235,7 +230,8 @@
 
 
 /***/ },
-/* 4 */
+
+/***/ 4:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -487,7 +483,8 @@
 
 
 /***/ },
-/* 5 */
+
+/***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -538,7 +535,8 @@
 	exports.TopNav = TopNav;
 
 /***/ },
-/* 6 */
+
+/***/ 6:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -564,7 +562,8 @@
 	}
 
 /***/ },
-/* 7 */
+
+/***/ 7:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -577,5 +576,48 @@
 	// exports
 
 
+/***/ },
+
+/***/ 76:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(77);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/postcss-loader/index.js!./../../../node_modules/less-loader/index.js!./list.less", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/postcss-loader/index.js!./../../../node_modules/less-loader/index.js!./list.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 77:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "body,dl,html,li,ol,p,ul{padding:0;margin:0;border:0;font-size:14px}dl,li,ol,ul{list-style:none}a,dl,h1,h2,h3,h4,h5,h6,li,ol,p,ul{font-family:Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,WenQuanYi Micro Hei,Microsoft Yahei,sans-serif}a{text-decoration:none}.article_list_wrap{width:650px;margin:0 auto}.article_list_wrap p{height:46px;border-bottom:1px solid #e5e5e5;color:#44a340;overflow:hidden;box-sizing:border-box;padding:16px 10px}.article_list_wrap p:hover{background-color:#f6f6f6}.article_list_wrap p:first-child{text-align:center;color:#999}.article_list_wrap p a{display:block;max-width:80%;float:left;color:#44a340;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.article_list_wrap p a:hover{color:#fff;background:#44a340}.article_list_wrap p span{display:block;width:20%;float:right;color:#999;text-align:right}", ""]);
+
+	// exports
+
+
 /***/ }
-/******/ ]);
+
+/******/ });

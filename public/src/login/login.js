@@ -1,5 +1,14 @@
 //the easy component of login used react!!
-require('./login.less')
+// require('./login.less')
+
+//less
+import './login.less';
+
+//js
+import 'core-js/fn/promise'; //promise polyfill
+import 'fetch-detector'; //test wether fetch() is useful;
+import 'fetch-ie8'; //polyfill for fetch in ie8+
+
 
 class Login extends React.Component {
 
@@ -19,23 +28,24 @@ class Login extends React.Component {
 		else if( data.psw == '')
 			alert('用户密码不能为空');
 		else 
-			$.ajax({
-				url: '?action=login',
-				data: data,
-				type: 'post',
-				dataType: 'json',
-				success: function(data){
-					if(data.code == 200)
-						window.location.href = 'index';
-					else
-						alert(data.result);
+			fetch('?action=login', {
+				method: 'post',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
 				},
-				error: function(){
-					alert('网络出现异常，请刷新再试！')
+				body: JSON.stringify(data)
+			}).then(res => res.json()).then(data => {
+				if(data.code==200){
+					window.location.href = '../index';
+				}else{
+					alert(data.result);
 				}
+			}).catch((err) => {
+				throw err;
+				alert('网络异常!');
 			});
 	}
-
 
 	resetHandler(){
 		this.refs.userId.value = '';

@@ -20,6 +20,11 @@ app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-for
 app.use(bodyParser.json());// parse application/json
 app.use(cookieParser());
 
+//简单过滤掉favicon.ico
+app.all('/favicon.ico', function(req, res){
+	res.end();
+});
+
 //遍历路由
 //index
 app.all('/', function(req, res, next){
@@ -31,23 +36,13 @@ app.all('/', function(req, res, next){
 });
 app.all('/:page', function(req, res, next){
 	var page = req.params.page
-	  , file = page === '' ? 'index.js' : page + '.js';
+	  , file = page + '.js';
 	try{
 		require(ROUTER_PATH + '/' + file)(req, res);
 	}catch(e){
-		console.log(e);
-		next();
+		require(ROUTER_PATH + '/notfound.js')(req, res);
+		throw e;
 	}
-});
-
-//not found error
-app.use(function(req, res, next){
-	//todo error handle
-	var data = {
-		code: 404,
-		msg: 'not found!'
-	};
-	res.render('error', data);
 });
 
 module.exports = app;
