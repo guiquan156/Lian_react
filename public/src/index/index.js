@@ -1,37 +1,22 @@
-
+//less
 import './index.less';
-import {TopNav} from '../comm/nav/nav.component.js'; //nav 组件
 
-class ContentWrap extends React.Component {
-	render() {
-		return (
-			<div className="content_wrap">
-				<a href="#"><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1637785195,4139586512&fm=111&gp=0.jpg" className="photo"/></a>
-				<p>guiquan156</p>
-				<div className="main_entry">
-					<a href="http://localhost:3333/list">全部</a>
-					<a href="http://localhost:3333/list">分类</a>
-					<a href="http://localhost:3333/list">讨论</a>
-				</div>
-			</div>
-		);
-	}
-}
+//depend
+import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 
-class HomeWrap extends React.Component {
-	render() {
-		return (
-			<div>
-				<TopNav />
-				<ContentWrap />
-			</div>
-		);
-	}
-}
+//component
+import ArticleList from '../comm/list/list.component.js';
+import App from '../comm/app/app.component.js';
+import Home from '../comm/home/home.component.js';
+import Page from '../comm/page/page.component.js';
 
 ReactDOM.render(
-	<HomeWrap />,
+	<Router history={hashHistory}>
+		<Route path='/' component={App}>
+			<IndexRoute component={Home}/>
+			<Route path='/ArticleList/:listType' component={ArticleList} />
+			<Route path='/page/:num' component={Page} />
+		</Route>
+	</Router>,
 	document.getElementById('app')//todo
 );
-
-

@@ -1,15 +1,16 @@
 
 import './nav.less';
+import {Link} from 'react-router';
 
 //todo 
 class TopNav extends React.Component {
 	render() {
 		return (
 			<div className="nav_top">
-				<a href="http://localhost:3333" className="nav_home_link">guiquan156</a>
+				<Link to="/" className="nav_home_link">guiquan156</Link>
 			</div>
 		);
 	}
 }
 
-export {TopNav};
+export default TopNav;
