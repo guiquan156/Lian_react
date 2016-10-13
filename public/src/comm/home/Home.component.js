@@ -12,7 +12,7 @@ class Home extends React.Component {
 				<div className="main_entry">
 					<Link to="/ArticleList/all">全部</Link>
 					<Link to="/ArticleList/cat">分类</Link>
-					<Link to="/ArticleList/issue">讨论</Link>
+					<Link to="/test">test</Link>
 				</div>
 			</div>
 		);
