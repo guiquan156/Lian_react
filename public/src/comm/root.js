@@ -2,11 +2,11 @@
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 
 //component
-import ArticleList from '../comm/list/list.component.js';
-import App from '../comm/app/app.component.js';
-import Home from '../comm/home/home.component.js';
-import Page from '../comm/page/page.component.js';
-
+import ArticleList from './list/list.component.js';
+import App from './app/app.component.js';
+import Home from './home/home.component.js';
+import Page from './page/page.component.js';
+import Test from './test/test.component.js';
 
 class Root extends React.Component {
 	render() {
@@ -17,13 +17,13 @@ class Root extends React.Component {
 						<IndexRoute component={Home}/>
 						<Route path='/ArticleList/:listType' component={ArticleList} />
 						<Route path='/page/:num' component={Page} />
+						<Route path='/test' component={Test} />
 					</Route>
 				</Router>
 			</div>
 		);
 	}
 }
-
 
 export default Root;
 
