@@ -13,7 +13,7 @@ global.BUILD_PATH = BASE_PATH + '/public/build';
 global.VIEWS_PATH = BASE_PATH + '/views';
 global.ROUTER_PATH = BASE_PATH + '/router';
 
-global.INDEX_PATH = process.env['INDEX_PATH'];
+global.INDEX_PATH = process.env['INDEX_PATH'] ? process.env['INDEX_PATH'] : 'http://localhost:3333';
 
 global.COOKIES = {};
 
