@@ -1,8 +1,7 @@
 
-import './list.less';
 import {Link} from 'react-router';
 
-class ArticleList extends React.Component {
+class List extends React.Component {
 	render() {
 		//todo 改成读数据操作
 		var data = [
@@ -180,7 +179,7 @@ class ArticleList extends React.Component {
 	}
 }
 
-export default ArticleList;
+export default List;
 
 
 

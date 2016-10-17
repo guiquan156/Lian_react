@@ -1,5 +1,5 @@
-import AddTodo from '../component/AddTodo';
-import TodoList from '../component/TodoList';
+import AddTodo from '../component/test/AddTodo';
+import TodoList from '../component/test/TodoList';
 
 import { connect } from 'react-redux';
 
@@ -20,7 +20,7 @@ function completeTodo(index){
 	return result;
 }
 
-class App extends React.Component {
+class Test extends React.Component {
 	render(){
 		let  {dispatch} = this.props;
 		// console.log(this.props);
@@ -47,5 +47,5 @@ function aaa(state){
 }
 
 
-export default connect(aaa)(App);
+export default connect(aaa)(Test);
 

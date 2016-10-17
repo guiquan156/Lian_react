@@ -1,4 +1,4 @@
-import TopNav from '../nav/nav.component.js'; //nav 组件
+import TopNav from './comm/nav.js'; //nav 组件
 
 class App extends React.Component {
 	render() {
