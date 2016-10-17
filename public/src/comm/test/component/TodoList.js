@@ -4,16 +4,48 @@ import Todo from './Todo';
 class TodoList extends React.Component {
 	render() {
 		return (
-			<ul>
-				{this.props.todos.map(
-					(todo, index) =>
-						<Todo
-							key={index}
-							{...todo}
-							onClick={()=>this.props.onTodoClick(index)}/>
-				)}
-			</ul>
+			<ul>{this.todoFilter()}</ul>
 		);
+	}
+
+	todoFilter() {
+		const props = this.props;
+		let key = 0;
+
+		console.log(props.filter);
+
+		switch(props.filter){
+			case 'SHOW_ALL':
+				return props.todos.map((todo, index) =>
+					<Todo
+						key={index}
+						{...todo}
+						onClick={()=>props.onTodoClick(index)}/>);
+
+			case 'SHOW_COMPLETED':
+				return props.todos.map((todo, index) => {
+							console.log(index);
+							if(todo.isCompleted){
+								console.log(todo);
+								return (<Todo
+											key={key++}
+											{...todo}
+											onClick={()=>props.onTodoClick(index)}/>);
+							}
+						}
+					);
+
+			case 'SHOW_NO_COMPLETED':
+				return props.todos.map((todo, index) => {
+							if(!todo.isCompleted){
+								return (<Todo
+											key={key++}
+											{...todo}
+											onClick={()=>props.onTodoClick(index)}/>)
+							}
+						}
+					);
+		}
 	}
 }
 

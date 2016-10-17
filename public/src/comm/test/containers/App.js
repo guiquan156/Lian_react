@@ -1,11 +1,12 @@
 import AddTodo from '../component/AddTodo';
 import TodoList from '../component/TodoList';
+import Footer from '../component/Footer';
 
 import { connect } from 'react-redux';
 
 //action
 function todoAddAction(text){
-	var result = {
+	let result = {
 		type: 'ADD_TODO',
 		text
 	}
@@ -13,26 +14,34 @@ function todoAddAction(text){
 }
 
 function completeTodo(index){
-	var result = {
+	let result = {
 		type: 'COMPLETE_TODO',
 		index
 	}
 	return result;
 }
 
+function filterAction(type){
+	return {type};
+}
+
 class App extends React.Component {
 	render(){
 		let  {dispatch} = this.props;
-		// console.log(this.props);
 		return (
 			<div>
-				<AddTodo 
-					onAddClick={(text) => 
+				<AddTodo
+					onAddClick={(text) =>
 						dispatch(todoAddAction(text))
+					}/>
+				<Footer
+					onFilterClick={(type) =>
+						dispatch(filterAction(type))
 					}/>
 				<TodoList
 					todos={this.props.todos}
-					onTodoClick={(index) => 
+					filter={this.props.filter}
+					onTodoClick={(index) =>
 						dispatch(completeTodo(index))
 					}/>
 			</div>
@@ -42,6 +51,7 @@ class App extends React.Component {
 
 function aaa(state){
 	return {
+		filter: state.filter,
 		todos: state.todos,
 	}
 }
