@@ -15,11 +15,10 @@ function checkLogin(req){
 
 
 module.exports = function index (req, res) {
-	var data = {};
-	data.static_path = INDEX_PATH;
+	// var data = {};
+	// data.static_path = INDEX_PATH;
 	// if(checkLogin(req))
 	// 	res.render('index', data);
 	// else
 	// 	res.redirect('login');
-	res.render('index/index.html', data);
 }

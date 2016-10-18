@@ -11,9 +11,11 @@ var fs = require('fs');
 var app = express();
 
 //set express template
-app.set('views', [BUILD_PATH, VIEWS_PATH]);
-app.set('view engine', 'html');
-app.engine('.html', template.__express);
+app.set('views', [BUILD_PATH]);
+
+//没有必要 由前端来负责渲染
+// app.set('view engine', 'html');
+// app.engine('.html', template.__express);
 
 app.use(express.static(BUILD_PATH));//statuc files
 app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-form-urlencoded
@@ -27,13 +29,14 @@ app.all('/favicon.ico', function(req, res){
 
 //遍历路由
 //index
-app.all('/', function(req, res, next){
-	try{
-		require(ROUTER_PATH + '/index.js')(req, res);
-	}catch(e){
-		next();
-	}
-});
+// app.all('/', function(req, res, next){
+// 	try{
+// 		require(ROUTER_PATH + '/index.js')(req, res);
+// 	}catch(e){
+// 		throw e;
+// 		next();
+// 	}
+// });
 app.all('/:page', function(req, res, next){
 	var page = req.params.page
 	  , file = page + '.js';

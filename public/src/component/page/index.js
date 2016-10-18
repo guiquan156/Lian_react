@@ -1,5 +1,4 @@
 
-import './page.less';
 import {Link} from 'react-router';
 
 class Page extends React.Component {
@@ -16,7 +15,6 @@ class Page extends React.Component {
 			);
 	}
 }
-
 export default Page;
 
 

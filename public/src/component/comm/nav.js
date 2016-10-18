@@ -1,5 +1,4 @@
 
-import './nav.less';
 import {Link} from 'react-router';
 
 //todo 
