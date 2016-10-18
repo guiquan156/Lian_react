@@ -3,21 +3,20 @@ import TodoList from '../component/test/TodoList';
 
 import { connect } from 'react-redux';
 
-//action
-function todoAddAction(text){
-	var result = {
-		type: 'ADD_TODO',
-		text
+import { todoAddAction, completeTodo } from '../action/todoApp.js';
+
+
+
+function incAction(){
+	return {
+		type: 'INC'
 	}
-	return result;
 }
 
-function completeTodo(index){
-	var result = {
-		type: 'COMPLETE_TODO',
-		index
+function incActionAsync(){
+	return dispatch => {
+		setTimeout(()=>dispatch(incAction()), 1000);
 	}
-	return result;
 }
 
 class Test extends React.Component {
@@ -35,6 +34,9 @@ class Test extends React.Component {
 					onTodoClick={(index) => 
 						dispatch(completeTodo(index))
 					}/>
+				<button onClick={() => 
+					dispatch(incActionAsync())
+				}>++++</button>
 			</div>
 		);
 	}
@@ -43,6 +45,8 @@ class Test extends React.Component {
 function aaa(state){
 	return {
 		todos: state.todos,
+		filter: state.filter,
+		counter: state.counter
 	}
 }
 

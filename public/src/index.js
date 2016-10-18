@@ -4,41 +4,36 @@ import './index.less';
 //modules
 import {Provider} from 'react-redux';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 
 //components
 import App from './component/app.js';
-import List from './component/list/';// 直接写不行 卧槽！！！！
-import Home from './component/home';
+// import List from './component/list/';// 直接写不行 卧槽！！！！
+// import Home from './component/home';
 import Page from './component/page';
 
 //container
 import Test from './container/test.js';
+import List from './container/List.js';
+import Home from './container/Home.js';
 
 //reducer
-function todoApp(state, action){
-	switch(action.type){
-		case 'ADD_TODO':  //增加
-			//放回一个新的state
-			console.log('todos', state.todos);
-			console.log('action', action);
-			return {
-				counter: ++state.counter, //数量加一
-				todos: [...state.todos, {text: action.text, isCompleted: false}] //push一个todo
-			};
-		case 'COMPLETE_TODO': //完成！
-			let nextState = {
-				counter: state.counter,
-				todos: [...state.todos]
-			}
-			nextState.todos[action.index].isCompleted = true;
-			return nextState;
-		default: return state; //reducer一定要放回state无论如何！！！
-	}
+// import todoApp from './reducer/todoApp.js';
+import reducer from './reducer/reducer.js';
+
+//中间件测试
+const logger = store => next => action => {
+	console.log('dispatching', action);
+	let result = next(action);
+	console.log('next state', store.getState());
+	return result;
 }
 
-let store = createStore(todoApp, {counter: 0, todos: []}); //一开始为空的！！
+let createStoreWithMiddleware = applyMiddleware(logger, thunk)(createStore);
+let store = createStoreWithMiddleware(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
+// let store = createStore(todoApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); 
 
 //渲染
 ReactDOM.render(
@@ -48,7 +43,6 @@ ReactDOM.render(
 				<IndexRoute component={Home}/>
 				<Route path='/list/:listType' component={List} />
 				<Route path='/page/:num' component={Page} />
-				<Route path='/test' component={Test} />
 			</Route>
 		</Router>
 	</Provider>,
