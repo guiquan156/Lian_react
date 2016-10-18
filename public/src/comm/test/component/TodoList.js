@@ -12,8 +12,6 @@ class TodoList extends React.Component {
 		const props = this.props;
 		let key = 0;
 
-		console.log(props.filter);
-
 		switch(props.filter){
 			case 'SHOW_ALL':
 				return props.todos.map((todo, index) =>

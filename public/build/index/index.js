@@ -12790,8 +12790,6 @@
 				var props = this.props;
 				var key = 0;
 
-				console.log(props.filter);
-
 				switch (props.filter) {
 					case 'SHOW_ALL':
 						return props.todos.map(function (todo, index) {
