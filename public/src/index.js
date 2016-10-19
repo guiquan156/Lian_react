@@ -9,17 +9,15 @@ import thunk from 'redux-thunk';
 
 //components
 import App from './component/app.js';
-// import List from './component/list/';// 直接写不行 卧槽！！！！
-// import Home from './component/home';
-import Page from './component/page';
+import Home from './component/home';
+// import Page from './component/page';
 
 //container
 import Test from './container/test.js';
 import List from './container/List.js';
-import Home from './container/Home.js';
+import Artical from './container/Artical.js';
 
 //reducer
-// import todoApp from './reducer/todoApp.js';
 import reducer from './reducer/reducer.js';
 
 //中间件测试
@@ -30,10 +28,8 @@ const logger = store => next => action => {
 	return result;
 }
 
-let createStoreWithMiddleware = applyMiddleware(logger, thunk)(createStore);
-let store = createStoreWithMiddleware(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
-// let store = createStore(todoApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); 
+let createStoreWithMiddleware = applyMiddleware(logger, thunk)(createStore);//加入异步中间件
+let store = createStoreWithMiddleware(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); //使用redux开发工具
 
 //渲染
 ReactDOM.render(
@@ -42,12 +38,9 @@ ReactDOM.render(
 			<Route path='/' component={App}>
 				<IndexRoute component={Home}/>
 				<Route path='/list/:listType' component={List} />
-				<Route path='/page/:num' component={Page} />
+				<Route path='/page/:id' component={Artical} />
 			</Route>
 		</Router>
 	</Provider>,
 	document.getElementById('app')
 );
-
-
-
