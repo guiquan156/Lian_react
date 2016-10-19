@@ -14579,10 +14579,6 @@
 
 	var _marked2 = _interopRequireDefault(_marked);
 
-	var _highlight = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"highlight.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _highlight2 = _interopRequireDefault(_highlight);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14590,6 +14586,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// import hljs from 'highlight.js';
 
 	var Artical = function (_React$Component) {
 		_inherits(Artical, _React$Component);
@@ -14613,13 +14611,10 @@
 					pedantic: false,
 					sanitize: false,
 					smartLists: true,
-					smartypants: false,
-					highlight: function highlight(code) {
-						return _highlight2.default.highlightAuto(code).value;
-					}
+					smartypants: false
 				});
 
-				var str = '大学期间我第一次做项目的时候，当时的三个人分别做不同的功能，互不影响。过了一个寒假，大家约好到一个地方把代码整合到一起。那时大家都没有版本控制的概念，经过了一下午的整合，总算是把项目能够完整成功地运行起来了，后来那个项目也一直没有用到版本控制。我的两个同学比我机智，他们合作一起做毕业设计，一个前端，一个后端。亏他们想得出拿云盘来进行协作，开发完的代码就上传到云盘，另一半则同步一下云盘，想想也是醉了。\r\n\r\n后来，我接触过大部分项目都用的是 SVN 来进行版本控制，不知大家跟我一样是否只是用 SVN 来备份代码或协作。是的，在 SVN 的使用中，大部分人都只用到了其中的 trunk，大家都在 trunk 上面修改提交协作。人少项目小时还勉强没什么问题。一旦项目大了人多了，问题也就慢慢地浮现出来。\r\n\r\n项目大了，当你正在 trunk 上开发一个新功能的时候，突然被告知要修复一个紧急 bug，这时怎么办？bug 如果不涉及到现在开发功能的文件还好，改完 bug 的文件直接上线即可。但是如果涉及到正在开发的文件，那么你只能先默默地注释掉新功能的代码，代码如果多且分布广的话真的会吐血。\r\n\r\n参与项目的人数多了，都在 trunk 上开发，今天我开发的功能要上线，可是其他的同事提交了开发一半的代码，代码混在一起就很难放心地上线了。同事之间每天的不断代码提交会增加项目的不稳定性，没有人会在项目不稳定的时候就把它放到线上给用户使用，这不是给自己挖坑吗。但是，我真的经历过，想起那时也真是愉快的时光。那时赶着项目上线，并且没有测试，一声令下就上线。用户就是我们的测试，每天都有许多的用户打电话过来反馈这里有问题那里有问题，不过这段时光总算是过去了。\r\n\r\n以上罗列的种种问题就是为了接下来做铺垫。分支可以解决以上等大部分问题，那么，分支又是什么？创建一条新的分支可以理解为把代码再复制一份，在新分支上面的改动不影响原来代码的运行。并且该分支上的代码，也就是复制的那一份的代码也会被添加到版本库中被管理，还可以进行分支合并的操作将代码们进行合并。比如，你被指派去开发一个功能，这个功能可能得花上一段时间的开发，为了不影响其他同事在原来功能上的开发，你可以拉去一条新的分支进行功能的开发，功能开发完毕便可以合并到原来的主干上。\r\n\r\n大部分用 SVN 进行版本控制的开发者都很少甚至不用 SVN 的分支，有的人说没必要，有的人说不会，有的人说合并很麻烦有很多的冲突，这些都是借口。在稍微有点规模的项目中，只有一条主干的 trunk 是无法保证项目的稳定性，至少得保证 trunk 主干上的代码是稳定的。SVN 创建一条分支是在远程机器上创建的，创建完毕你需要 checkout 到你本地才能使用。SVN 的一切操作都是以远程机器为主，你想进行分支合并的操作时得先将本地的代码提交并更新后才能进行合并操作，最后合并了其他分支上的代码后还需进行提交。\r\n\r\n那么，分支得创建多少，该怎么使用。参考了这篇[「多分支开发策略」](http://blog.csdn.net/crylearner/article/details/18779137)的文章，目前项目中我有四条一直保存着的分支。 master 主干分支也就是 trunk 是默认存在的，然后我从trunk上检出了三条分支，分别是 hotfix、dev、release。hotfix 分支是专门用来应对紧急 bug 的修复，dev 分支是用来新功能的开发，release 分支是用来发布测试版本，master 则是用来发布正式版本。dev 上开发完毕可以合并到 release 上，然后可以继续功能的开发。一旦 release 被测出有 bug，可以直接在 release 上面进行修复。线上的 bug 则可以使用 hotfix 分支进行修复。\r\n\r\n理论方法说得差不多了，接下来就是实战了，知道了那么多，但还是没有具体的操作也是白搭。可以戳这个[「TortoiseSVN中Branching和Merging实践」](http://blog.csdn.net/eggcalm/article/details/6606520)学习如何操作 SVN 分支的合并。需要注意的是，两条分支之间的合并都需要把本地的代码进行提交并更新才能进行 merge 操作，否则，你自己试了就会知道了嘿嘿嘿。';
+				var str = "我们在开发中都会遇到这样一种情况：先给 Window 绑定一个 ``scroll`` 事件，然后打印日志，代码如下。打开浏览器，滚动一下鼠标，便会发现日志被频繁地打印出来。类似这样的事件还是 Window 的 ``resize`` 事件、输入框的 ``keyup`` 事件、拖拽时的 ``mousemove`` 事件等等。\r\n\r\n```javascript\r\n$(window).on('scroll', function() {\r\n  console.log(111);\r\n});\r\n```\r\n\r\n它们都有以下两个特点：\r\n\r\n- 事件发生后会被频繁地调用；\r\n- 都是浏览器自带的事件，无法对其进行代码修改。\r\n\r\n既然无法对这些事件进行改动，那么我们只能在被调用的函数中想办法优化了。因为使用场景的不同，所以有 ``函数防抖`` 和 ``函数节流`` 这两种优化方案，下面将逐一进行介绍。\r\n\r\n## 函数防抖\r\n\r\n**如果用手指一直按住一个弹簧，它将不会弹起直到你松手。**函数防抖 ``debounce`` 就是给函数设置一个定时器，n 秒之后才调用函数，n 秒内如果再次设置定时器的话，则会重新定时 n 秒后执行函数。\r\n\r\n函数防抖的简单实现：\r\n\r\n```javascript\r\n/**\r\n * 函数防抖\r\n * @param  {Function} 调用的函数\r\n * @param  {Int}      时间\r\n * @return {Function} 返回客户调用函数\r\n */\r\nvar debounce = function(action, time) {\r\n  var timer = null;\r\n    return function() {\r\n      var context = this,\r\n          args = arguments;\r\n\r\n      clearTimeout(timer);\r\n        timer = setTimeout(function() {\r\n        action.apply(context, args);\r\n      }, time);\r\n    }\r\n};\r\n```\r\n\r\n这时如果我们再结合 Window 的 scroll 事件，可以发现控制台里的打印明细打印少了很多，而且几乎是在停止 scroll 了之后才会去调用 ``doResize`` 函数（主要是因为设置的事件为 500 毫秒）。\r\n\r\n```javascript\r\nfunction doResize() {\r\n  console.log(arguments);\r\n}\r\n\r\nvar action = debounce(doResize, 500);\r\n$(window).on('resize', action);\r\n```\r\n\r\n## 函数节流\r\n\r\n**如果将水龙头拧紧直到水是以水滴的形式流出，那你会发现每隔一段时间，就会有一滴水流出。**函数节流 ``throttle`` 顾名思义就是节约使用函数次数的意思。\r\n\r\n有一种场景，一个输入框在 keyup 之后需获取到输入的值去 ajax 请求，如果是正常实现的话，那 ajax 请求的数量则太大了。如果是使用 ``debounce`` 的话，则会在用户输入完毕后的 n 秒后才会去 ajax 请求。我们需要的只是减少 keyup 事件的触发，而不是完全禁止它等到最后一个 keyup 才触发。这时我们就可以使用函数节流``throttle``。\r\n\r\n函数节流的简单实现：\r\n\r\n```javascript\r\n/**\r\n * 函数节流\r\n * @param  {Function} 调用的函数\r\n * @param  {Int}      时间，单位毫秒\r\n * @return {Function} 返回客户调用函数\r\n */\r\nvar throttle = function(action, delay) {\r\n  var last = 0;\r\n  return function() {\r\n    var curr = +new Date();\r\n    if (curr - last > delay) {\r\n      action.apply(this, arguments);\r\n      last = curr;\r\n    }\r\n  };\r\n}\r\n```\r\n\r\n再结合输入框的 keyup 事件，就可以看出 keyup 调用的频率明显减少了。\r\n\r\n```javascript\r\nfunction doInput() {\r\n  console.log($(this).val());\r\n}\r\n\r\nvar action = throttle(doInput, 1000);\r\n$('#txt').on('keyup', action);\r\n```\r\n\r\n## 使用 underscore.js\r\n\r\n``underscore.js`` 有对 ``debounce`` 和 ``throttle`` 的分别实现。将上面的代码修改如下：\r\n\r\n```javascript\r\n// debounce\r\nvar resizeAction = _.debounce(doResize, 500);\r\n$(window).on('resize', resizeAction);\r\n\r\n// throttle\r\nvar keyupAction = _.throttle(doInput, 1000);\r\n$('#txt').on('keyup', keyupAction);\r\n```\r\n\r\n## 参考\r\n\r\n- http://www.cnblogs.com/fsjohnhuang/p/4147810.html\r\n- https://segmentfault.com/a/1190000002764479\r\n";
 				console.log((0, _marked2.default)(str));
 				return React.createElement('div', { className: 'artical wrap', dangerouslySetInnerHTML: { __html: (0, _marked2.default)(str) } });
 			}
