@@ -18,19 +18,23 @@ class List extends React.Component {
 		}else if(this.props.listType == "cat"){
 			if(Object.keys(dataCat).length == 0)
 				tmpl = <div className="article_list_wrap"></div>;
-			else
+			else{
+				let cats = Object.keys(dataCat);
 				tmpl = (
 						<div className="article_list_wrap">
-							<p className="title">JS</p>
-							{ dataCat.JS.map((item) => <p><Link to={`/page/${item.id}`}>{item.title}</Link><span>{item.date}</span></p>) }
-							<p className="title">CSS</p>
-							{ dataCat.CSS.map((item) => <p><Link to={`/page/${item.id}`}>{item.title}</Link><span>{item.date}</span></p>) }
-							<p className="title">HTML</p>
-							{ dataCat.HTML.map((item) => <p><Link to={`/page/${item.id}`}>{item.title}</Link><span>{item.date}</span></p>) }
-							<p className="title">NODE</p>
-							{ dataCat.NODE.map((item) => <p><Link to={`/page/${item.id}`}>{item.title}</Link><span>{item.date}</span></p>) }
+							{
+								cats.map((cat) => {
+									return (
+										<div>
+											<p className="title">{cat}</p>
+											{ dataCat[cat].map((item) => <p><Link to={`/page/${item.id}`}>{item.title}</Link><span>{item.date}</span></p>) }
+										</div>
+										)
+								})
+							}
 						</div>
 					);
+			}
 		}
 		return tmpl;
 	}

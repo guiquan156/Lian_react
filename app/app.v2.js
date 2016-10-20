@@ -14,8 +14,8 @@ var app = express();
 app.set('views', [BUILD_PATH]);
 
 //没有必要 由前端来负责渲染
-// app.set('view engine', 'html');
-// app.engine('.html', template.__express);
+app.set('view engine', 'html');
+app.engine('.html', template.__express);
 app.use(express.static(BUILD_PATH));//statuc files
 app.use(bodyParser.urlencoded({extended: false}));// parse application/x-www-form-urlencoded
 app.use(bodyParser.json());// parse application/json

@@ -1,7 +1,7 @@
 
 import { combineReducers } from 'redux';
 import {UPDATE_LIST, UPDATE_LIST_CAT, ADD_ARTICAL} from '../action/action.js';
-import 'core-js/fn/object/assign';
+// import 'core-js/fn/object/assign';
 
 function getList(state=[], action){
 	switch(action.type){
@@ -21,12 +21,10 @@ function getListCat(state={}, action){
 	}
 }
 
-function addArtical(state={}, action){
+function addArtical(state=[], action){
 	switch(action.type){
 		case ADD_ARTICAL: 
-			return Object.assign({}, state, {
-				[action.result.id]: action.result.content
-			});
+			return [...state, action.result];
 		default:
 			return state;
 	}
