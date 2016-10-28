@@ -1,7 +1,5 @@
 // router index.js
 
-
-
 //todo 简单处理用户登录问题
 function checkLogin(req){
 	//记录用户是否登录
@@ -17,12 +15,10 @@ function checkLogin(req){
 
 
 module.exports = function index (req, res) {
-	var data = {};
-	data.static_path = INDEX_PATH;
+	// var data = {};
+	// data.static_path = INDEX_PATH;
 	// if(checkLogin(req))
-	// 	res.render('index', {});
+	// 	res.render('index', data);
 	// else
 	// 	res.redirect('login');
-
-	res.render('index', {});
 }

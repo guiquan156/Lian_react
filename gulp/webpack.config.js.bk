@@ -1,26 +1,24 @@
-// var webpack = require('webpack');
-// var glob = require('glob');
-// var config = require('./gulp/config.js');
 var webpack = require('webpack');
+var glob = require('glob');
+var config = require('./config');
 
 //动态生成entry
-// var entry = (function(){
-// 	var files = glob.sync(config.src + '/*/*.js')
-// 	  , a = {};
-// 	files.forEach(function(value){
-// 		var pathArr = value.split('/')
-// 		  , fileName = pathArr.pop().match(/(.*)(\.js)$/)[1]
-// 		  , pathName = pathArr.pop();
-// 		if(pathName == 'comm') return;
-// 		a[pathName + '/' + fileName] = value;
-// 	});
-// 	return a;
-// })();
+var entry = (function(){
+	var files = glob.sync(config.src + '/*/*.js')
+	  , a = {};
+	files.forEach(function(value){
+		var pathArr = value.split('/')
+		  , fileName = pathArr.pop().match(/(.*)(\.js)$/)[1]
+		  , pathName = pathArr.pop();
+		a[pathName + '/' + fileName] = value;
+	});
+	return a;
+})();
 
 module.exports =  {
-	entry: { index: './public/src/index.js' },
+	entry: entry,
 	output: {
-		path: './public/build',
+		path: config.dest,
 		filename: '[name].js'
 	},
     module: {
